@@ -1,0 +1,88 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def solution(U, L, C):\n",
+    "    #import numpy as np\n",
+    "    if sum(C) != U + L:\n",
+    "        answer = \"IMPOSSIBLE\"\n",
+    "    elif sum(C) == U + L:\n",
+    "        ans = [[0]*len(C), [0]*len(C)]\n",
+    "        i = 0\n",
+    "        while i < len(C):\n",
+    "            if C[i] == 2:\n",
+    "                ans[0][i] = 1\n",
+    "                ans[1][i] = 1\n",
+    "            elif C[i] == 1:\n",
+    "                U_current = sum(ans[0])\n",
+    "                L_current = sum(ans[1])\n",
+    "                if U - U_current >= L - L_current:\n",
+    "                    ans[0][i] = 1\n",
+    "                else:\n",
+    "                    ans[1][i] = 1\n",
+    "            i = i+1\n",
+    "        answer1 = \"\"\n",
+    "        answer2 = \"\"\n",
+    "        x = 0\n",
+    "        while x < len(C):\n",
+    "            answer1 = answer1 + str(ans[0][x])\n",
+    "            answer2 = answer2 + str(ans[1][x])\n",
+    "            x = x+1\n",
+    "        answer = answer1 + \",\" + answer2\n",
+    "    return answer"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'11100,10001'"
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "solution(3, 2, [2, 1, 1, 0, 1])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
